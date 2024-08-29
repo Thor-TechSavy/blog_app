@@ -27,7 +27,7 @@ public class CommentControllerTest extends AbstractControllerTest {
 		// given
 		List<CommentDto> comments = new ArrayList<>();
 		LocalDateTime creationDate = LocalDateTime.of(2018, 5, 20, 20, 51, 16);
-		comments.add(new CommentDto(2L, "comment comment", "John Smith", creationDate));
+		comments.add(new CommentDto(2L, "comment content", "John Smith", creationDate));
 
 		// when
 		when(commentService.getCommentsForPost(1L)).thenReturn(comments);
@@ -37,7 +37,7 @@ public class CommentControllerTest extends AbstractControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$", hasSize(1)))
 			.andExpect(jsonPath("$[0].id", is(2)))
-			.andExpect(jsonPath("$[0].comment", is("comment comment")))
+			.andExpect(jsonPath("$[0].comment", is("comment content")))
 			.andExpect(jsonPath("$[0].author", is("John Smith")))
 			.andExpect(jsonPath("$[0].creationDate", is(creationDate.toString())));
 
@@ -47,8 +47,8 @@ public class CommentControllerTest extends AbstractControllerTest {
 	public void shouldAddComment() throws Exception {
 
 		// given
-		String commentBody = "{\"comment\":\"Test comment\", \"author\":\"John Doe\"}";
-		NewCommentDto newComment = createComment("Test comment", "John Doe");
+		String commentBody = "{\"content\":\"Test content\", \"author\":\"John Doe\"}";
+		NewCommentDto newComment = createComment("Test content", "John Doe");
 
 		// when
 		when(commentService.addComment(any(), eq(newComment))).thenReturn(1L);

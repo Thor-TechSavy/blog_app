@@ -3,7 +3,6 @@ package com.devskiller.tasks.blog.service;
 import com.devskiller.tasks.blog.model.Post;
 import com.devskiller.tasks.blog.model.dto.CommentDto;
 import com.devskiller.tasks.blog.model.dto.NewCommentDto;
-import com.devskiller.tasks.blog.repository.CommentRepository;
 import com.devskiller.tasks.blog.repository.PostRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ public class CommentServiceTest {
 	PostRepository postRepository;
 
 	@Autowired
-	CommentRepository commentRepository;
-
-	@Autowired
 	CommentService commentService;
 
 	@Test
@@ -40,7 +36,7 @@ public class CommentServiceTest {
 	private Post createTestPost() {
 		Post post = new Post();
 		post.setTitle("Test title");
-		post.setContent("Test comment");
+		post.setContent("Test content");
 		LocalDateTime creationDate = LocalDateTime.of(2018, 5, 20, 20, 51, 16);
 		post.setCreationDate(creationDate);
 		return postRepository.save(post);
