@@ -1,14 +1,15 @@
 package com.devskiller.tasks.blog.rest;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.devskiller.tasks.blog.model.dto.CommentDto;
 import com.devskiller.tasks.blog.model.dto.NewCommentDto;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.Matchers.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -18,11 +19,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class CommentControllerTest extends AbstractControllerTest {
+class CommentControllerTest extends AbstractControllerTest {
 
 
 	@Test
-	public void shouldReturnFoundComments() throws Exception {
+	void shouldReturnFoundComments() throws Exception {
 
 		// given
 		List<CommentDto> comments = new ArrayList<>();
@@ -37,14 +38,14 @@ public class CommentControllerTest extends AbstractControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$", hasSize(1)))
 			.andExpect(jsonPath("$[0].id", is(2)))
-			.andExpect(jsonPath("$[0].comment", is("comment content")))
+			.andExpect(jsonPath("$[0].content", is("comment content")))
 			.andExpect(jsonPath("$[0].author", is("John Smith")))
 			.andExpect(jsonPath("$[0].creationDate", is(creationDate.toString())));
 
 	}
 
 	@Test
-	public void shouldAddComment() throws Exception {
+	void shouldAddComment() throws Exception {
 
 		// given
 		String commentBody = "{\"content\":\"Test content\", \"author\":\"John Doe\"}";

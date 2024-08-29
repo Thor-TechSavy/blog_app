@@ -3,6 +3,7 @@ package com.devskiller.tasks.blog.service;
 import com.devskiller.tasks.blog.model.Post;
 import com.devskiller.tasks.blog.model.dto.CommentDto;
 import com.devskiller.tasks.blog.model.dto.NewCommentDto;
+import com.devskiller.tasks.blog.repository.CommentRepository;
 import com.devskiller.tasks.blog.repository.PostRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
-public class CommentServiceTest {
+class CommentServiceTest {
 
 	@Autowired
 	PostRepository postRepository;
 
 	@Autowired
+	CommentRepository commentRepository;
+
+	@Autowired
 	CommentService commentService;
 
 	@Test
-	public void shouldAddComment() {
+	void shouldAddComment() {
 		Post post = createTestPost();
 
 		NewCommentDto comment = new NewCommentDto("Author", "Content");
@@ -43,7 +47,7 @@ public class CommentServiceTest {
 	}
 
 	@Test
-	public void shouldReturnAddedComment() {
+	void shouldReturnAddedComment() {
 		Post post = createTestPost();
 
 		NewCommentDto comment = new NewCommentDto("Author", "Content");
@@ -54,6 +58,6 @@ public class CommentServiceTest {
 
 		assertThat("There should be one comment", comments, hasSize(1));
 		assertThat(comments.get(0).author(), equalTo("Author"));
-		assertThat(comments.get(0).comment(), equalTo("Content"));
+		assertThat(comments.get(0).content(), equalTo("Content"));
 	}
 }

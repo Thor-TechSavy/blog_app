@@ -11,10 +11,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class PostControllerTest extends AbstractControllerTest {
+class PostControllerTest extends AbstractControllerTest {
 
 	@Test
-	public void shouldReturnFoundPost() throws Exception {
+	void shouldReturnFoundPost() throws Exception {
 		// given
 		LocalDateTime creationDate = LocalDateTime.of(2018, 5, 20, 20, 51, 16);
 		PostDto post = new PostDto("Title", "content", creationDate);
