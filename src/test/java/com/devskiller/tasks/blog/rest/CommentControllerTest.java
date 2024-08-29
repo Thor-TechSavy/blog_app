@@ -1,15 +1,14 @@
 package com.devskiller.tasks.blog.rest;
 
-import com.devskiller.tasks.blog.model.dto.CommentDto;
-import com.devskiller.tasks.blog.model.dto.NewCommentDto;
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import com.devskiller.tasks.blog.model.dto.CommentDto;
+import com.devskiller.tasks.blog.model.dto.NewCommentDto;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -28,7 +27,7 @@ public class CommentControllerTest extends AbstractControllerTest {
 		// given
 		List<CommentDto> comments = new ArrayList<>();
 		LocalDateTime creationDate = LocalDateTime.of(2018, 5, 20, 20, 51, 16);
-		comments.add(new CommentDto(2L, "comment content", "John Smith", creationDate));
+		comments.add(new CommentDto(2L, "comment comment", "John Smith", creationDate));
 
 		// when
 		when(commentService.getCommentsForPost(1L)).thenReturn(comments);
@@ -38,7 +37,7 @@ public class CommentControllerTest extends AbstractControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$", hasSize(1)))
 			.andExpect(jsonPath("$[0].id", is(2)))
-			.andExpect(jsonPath("$[0].content", is("comment content")))
+			.andExpect(jsonPath("$[0].comment", is("comment comment")))
 			.andExpect(jsonPath("$[0].author", is("John Smith")))
 			.andExpect(jsonPath("$[0].creationDate", is(creationDate.toString())));
 
@@ -48,8 +47,8 @@ public class CommentControllerTest extends AbstractControllerTest {
 	public void shouldAddComment() throws Exception {
 
 		// given
-		String commentBody = "{\"content\":\"Test content\", \"author\":\"John Doe\"}";
-		NewCommentDto newComment = createComment("Test content", "John Doe");
+		String commentBody = "{\"comment\":\"Test comment\", \"author\":\"John Doe\"}";
+		NewCommentDto newComment = createComment("Test comment", "John Doe");
 
 		// when
 		when(commentService.addComment(any(), eq(newComment))).thenReturn(1L);

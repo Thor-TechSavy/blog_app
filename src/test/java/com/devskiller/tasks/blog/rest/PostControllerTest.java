@@ -17,7 +17,7 @@ public class PostControllerTest extends AbstractControllerTest {
 	public void shouldReturnFoundPost() throws Exception {
 		// given
 		LocalDateTime creationDate = LocalDateTime.of(2018, 5, 20, 20, 51, 16);
-		PostDto post = new PostDto("Title", "content", creationDate);
+		PostDto post = new PostDto("Title", "comment", creationDate);
 
 		// when
 		when(postService.getPost(1L)).thenReturn(post);
@@ -27,7 +27,7 @@ public class PostControllerTest extends AbstractControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(APPLICATION_JSON))
 			.andExpect(jsonPath("$.title", is("Title")))
-			.andExpect(jsonPath("$.content", is("content")))
+			.andExpect(jsonPath("$.content", is("comment")))
 			.andExpect(jsonPath("$.creationDate", is(creationDate.toString())));
 
 	}

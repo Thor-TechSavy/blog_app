@@ -26,7 +26,7 @@ public class PostServiceTest {
 	public void shouldReturnCreatedPost() {
 		Post post = new Post();
 		post.setTitle("Test title");
-		post.setContent("Test content");
+		post.setContent("Test comment");
 		LocalDateTime creationDate = LocalDateTime.of(2018, 5, 20, 20, 51, 16);
 		post.setCreationDate(creationDate);
 		postRepository.save(post);
@@ -34,7 +34,7 @@ public class PostServiceTest {
 		PostDto postDto = postService.getPost(post.getId());
 
 		assertNotNull("Post shouldn't be null", postDto);
-		assertEquals(postDto.content(), "Test content");
+		assertEquals(postDto.content(), "Test comment");
 		assertEquals(postDto.title(), "Test title");
 		assertEquals(postDto.creationDate(), creationDate);
 	}

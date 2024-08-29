@@ -40,7 +40,7 @@ public class CommentServiceTest {
 	private Post createTestPost() {
 		Post post = new Post();
 		post.setTitle("Test title");
-		post.setContent("Test content");
+		post.setContent("Test comment");
 		LocalDateTime creationDate = LocalDateTime.of(2018, 5, 20, 20, 51, 16);
 		post.setCreationDate(creationDate);
 		return postRepository.save(post);
@@ -58,6 +58,6 @@ public class CommentServiceTest {
 
 		assertThat("There should be one comment", comments, hasSize(1));
 		assertThat(comments.get(0).author(), equalTo("Author"));
-		assertThat(comments.get(0).content(), equalTo("Content"));
+		assertThat(comments.get(0).comment(), equalTo("Content"));
 	}
 }
