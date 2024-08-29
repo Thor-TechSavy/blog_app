@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
 @SpringBootTest
-class PostServiceTest {
+public class PostServiceTest {
 
 	@Autowired
 	PostRepository postRepository;
@@ -23,7 +23,7 @@ class PostServiceTest {
 	PostService postService;
 
 	@Test
-	void shouldReturnCreatedPost() {
+	public void shouldReturnCreatedPost() {
 		Post post = new Post();
 		post.setTitle("Test title");
 		post.setContent("Test content");
@@ -40,7 +40,7 @@ class PostServiceTest {
 	}
 
 	@Test
-	void shouldReturnNullForNotExistingPost() {
+	public void shouldReturnNullForNotExistingPost() {
 		PostDto postDto = postService.getPost(123L);
 
 		assertNull(postDto);

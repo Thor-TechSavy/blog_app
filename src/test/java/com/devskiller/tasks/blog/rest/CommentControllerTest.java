@@ -19,11 +19,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-class CommentControllerTest extends AbstractControllerTest {
+public class CommentControllerTest extends AbstractControllerTest {
 
 
 	@Test
-	void shouldReturnFoundComments() throws Exception {
+	public void shouldReturnFoundComments() throws Exception {
 
 		// given
 		List<CommentDto> comments = new ArrayList<>();
@@ -45,7 +45,7 @@ class CommentControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
-	void shouldAddComment() throws Exception {
+	public void shouldAddComment() throws Exception {
 
 		// given
 		String commentBody = "{\"content\":\"Test content\", \"author\":\"John Doe\"}";

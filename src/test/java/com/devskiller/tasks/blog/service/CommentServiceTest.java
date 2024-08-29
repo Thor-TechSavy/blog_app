@@ -16,7 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
-class CommentServiceTest {
+public class CommentServiceTest {
 
 	@Autowired
 	PostRepository postRepository;
@@ -28,7 +28,7 @@ class CommentServiceTest {
 	CommentService commentService;
 
 	@Test
-	void shouldAddComment() {
+	public void shouldAddComment() {
 		Post post = createTestPost();
 
 		NewCommentDto comment = new NewCommentDto("Author", "Content");
@@ -47,7 +47,7 @@ class CommentServiceTest {
 	}
 
 	@Test
-	void shouldReturnAddedComment() {
+	public void shouldReturnAddedComment() {
 		Post post = createTestPost();
 
 		NewCommentDto comment = new NewCommentDto("Author", "Content");
